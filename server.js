@@ -33,6 +33,14 @@ app.delete('/api/articulos/:id', (req, res) => {
 	res.send('Se ha eliminado');
 });
 
+//Ejercicio 2 MODULO 3
+app.get('/api/reportes/:id', (req, res) => {
+	const numeroReporte = req.params.id;
+	const resultado = articulos.buscarReportes(numeroReporte);
+
+	res.status(200).json(resultado);
+});
+
 const PORT = 8080;
 app.listen(PORT, () => {
 	console.log(`Escuchando el puerto ${PORT}`);
