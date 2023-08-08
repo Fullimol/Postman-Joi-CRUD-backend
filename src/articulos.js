@@ -48,9 +48,36 @@ const borrarUno = (id) => {
 	return filterTodos;
 };
 
+//Ejercicio 2 MODULO 3
+const buscarReportes = (id) => {
+	let todos = buscarTodos();
+	if (id == 121) {
+		let resultado = [];
+		for (let i = 0; i < todos.length; i++) {
+			let articulo = todos[i];
+			let articuloPrice = articulo.price;
+			let articuloPriceInt = parseInt(articuloPrice);
+
+			if (articuloPriceInt > 500) {
+				resultado.push(articulo);
+			}
+		}
+		return resultado;
+	} else if (id == 122) {
+		let sumaPrecios = 0;
+		for (let i = 0; i < todos.length; i++) {
+			const precios = parseFloat(todos[i].price); //convierto los precios a "number"
+			sumaPrecios = sumaPrecios + precios; // tambien se puede usar "sumaPrecios += precioArticulo;"
+		}
+		const resultado = sumaPrecios / todos.length; //promedio
+		return resultado;
+	}
+};
+
 module.exports = {
 	buscarTodos,
 	buscarUno,
 	agregrUno,
 	borrarUno,
+	buscarReportes,
 };
