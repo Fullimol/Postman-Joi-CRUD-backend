@@ -33,6 +33,14 @@ app.delete('/api/articulos/:id', (req, res) => {
 	res.send('Se ha eliminado');
 });
 
+app.put('/api/articulos/:id', (req, res) => {
+	const id = req.params.id;
+	const { name, price } = req.body;
+	const aModificar = articulos.modificar(id, { name, price });
+
+	res.status(200).json(aModificar);
+});
+
 //Ejercicio 2 MODULO 3
 app.get('/api/reportes/:id', (req, res) => {
 	const numeroReporte = req.params.id;
