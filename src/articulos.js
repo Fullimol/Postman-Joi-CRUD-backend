@@ -48,6 +48,19 @@ const borrarUno = (id) => {
 	return filterTodos;
 };
 
+const modificar = (id, articuloModificado) => {
+	let todos = buscarTodos();
+	let articulo = todos.find((item) => item.id == id);
+	articulo.name = articuloModificado.name;
+	articulo.price = articuloModificado.price;
+
+	const index = todos.findIndex((item) => item.id == id); //Encuentra el índice del artículo en la lista
+	todos[index] = articulo; // Reemplaza el artículo modificado en la lista
+	fs.writeFileSync('articulos.json', JSON.stringify(todos));
+
+	return articulo;
+};
+
 //Ejercicio 2 MODULO 3
 const buscarReportes = (id) => {
 	let todos = buscarTodos();
@@ -80,4 +93,5 @@ module.exports = {
 	agregrUno,
 	borrarUno,
 	buscarReportes,
+	modificar,
 };
