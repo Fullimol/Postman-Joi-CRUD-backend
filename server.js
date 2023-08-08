@@ -38,7 +38,11 @@ app.put('/api/articulos/:id', (req, res) => {
 	const { name, price } = req.body;
 	const aModificar = articulos.modificar(id, { name, price });
 
-	res.status(200).json(aModificar);
+	if (aModificar === 'Artículo no encontrado') {
+		res.status(404).json({ message: 'Artículo no encontrado' });
+	} else {
+		res.status(200).json(aModificar);
+	}
 });
 
 //Ejercicio 2 MODULO 3

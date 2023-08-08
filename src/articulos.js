@@ -51,14 +51,17 @@ const borrarUno = (id) => {
 const modificar = (id, articuloModificado) => {
 	let todos = buscarTodos();
 	let articulo = todos.find((item) => item.id == id);
-	articulo.name = articuloModificado.name;
-	articulo.price = articuloModificado.price;
 
-	const index = todos.findIndex((item) => item.id == id); //Encuentra el índice del artículo en la lista
-	todos[index] = articulo; // Reemplaza el artículo modificado en la lista
-	fs.writeFileSync('articulos.json', JSON.stringify(todos));
+	if (articulo) {
+		articulo.name = articuloModificado.name;
+		articulo.price = articuloModificado.price;
 
-	return articulo;
+		const index = todos.findIndex((item) => item.id == id); //Encuentra el índice del artículo en la lista
+		todos[index] = articulo; // Reemplaza el artículo modificado en la lista
+		fs.writeFileSync('articulos.json', JSON.stringify(todos));
+
+		return articulo;
+	} else return 'Artículo no encontrado';
 };
 
 //Ejercicio 2 MODULO 3
